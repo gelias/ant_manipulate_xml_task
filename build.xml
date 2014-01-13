@@ -1,0 +1,58 @@
+<project name="uMovImporter" basedir="." default="manipulate">
+
+
+	<path id="project.classpath">
+		<pathelement location="${basedir}" />
+	</path>
+
+	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask"/>
+
+	<!-- Compile the current source code -->
+	<target name="manipulate" depends="add_value, insert_tag, replace_value, uncomment_tag, remove_tag">
+		<echo>Manipulatin XML </echo>
+	</target>
+
+	<target name="add_value">
+		<echo>Adding value into a XML tag</echo>
+		<xmltask source="${basedir}/web.xml" dest="${basedir}/output/add.xml"> 
+   			<insert path="/client/address" xml="Fernando de Noronha"/>
+		</xmltask>
+	</target>
+
+	<target name="insert_tag">
+		<echo>Insert XML tags</echo>
+		<xmltask source="${basedir}/web.xml" dest="${basedir}/output/insert.xml"> 
+   			<insert path="/client">
+	      		<![CDATA[ <phone> 5551 92074889</phone> ]]> 
+	   		</insert> 
+		</xmltask>
+	</target>
+
+	<target name="replace_value">
+		<echo>Replace XML tag value</echo>
+		<xmltask source="${basedir}/web.xml" dest="${basedir}/output/replace.xml"> 
+   			<replace path="/client/@id" withText="9999"/>
+		</xmltask>
+	</target>
+
+	<target name="comment_tag">
+		<echo>Replace XML tag value</echo>
+		<xmltask source="${basedir}/web.xml" dest="${basedir}/output/comment.xml"> 
+   			<comment path="/client/car[1]"/>
+		</xmltask>
+	</target>
+
+	<target name="uncomment_tag">
+		<echo>Replace XML tag value</echo>
+		<xmltask source="${basedir}/web.xml" dest="${basedir}/output/uncomment.xml"> 
+   			<uncomment path="/client/comment()[2]"/>
+		</xmltask>
+	</target>
+
+	<target name="remove_tag">
+		<echo>Replace XML tag value</echo>
+		<xmltask source="${basedir}/web.xml" dest="${basedir}/output/remove.xml"> 
+   			<remove path="/client/debts"/>
+		</xmltask>
+	</target>
+</project>

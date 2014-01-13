@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<client id="0">
+  <address/>
+  <!--
+  <car>
+      <name>HB20</name>
+  </car>
+   -->
+  <car>
+      <name>Mercedes</name>
+  </car>
+  <debts>
+      <total>R$11.000</total>
+  </debts>
+
+</client>
