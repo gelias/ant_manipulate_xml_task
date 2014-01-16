@@ -1,11 +1,20 @@
-<project name="uMovImporter" basedir="." default="manipulate">
+<project name="uMovImporter" basedir="." default="">
 
 
 	<path id="project.classpath">
 		<pathelement location="${basedir}" />
+		<fileset dir="${basedir}/lib">
+	  		<include name="*.jar"/>
+		</fileset>
 	</path>
 
 	<taskdef name="xmltask" classname="com.oopsconsultancy.xmltask.ant.XmlTask"/>
+
+	<taskdef name="sshexec" classname="org.apache.tools.ant.taskdefs.optional.ssh.SSHExec">
+	  <classpath>
+	    <pathelement location="${basedir}/lib/jsch-0.1.50.jar"/>
+	  </classpath>
+	</taskdef> 
 
 	<!-- Compile the current source code -->
 	<target name="manipulate" depends="add_value, insert_tag, replace_value, uncomment_tag, remove_tag">
@@ -55,4 +64,13 @@
    			<remove path="/client/debts"/>
 		</xmltask>
 	</target>
+
+
+	<target name="ssh">
+		<sshexec host="deployer"
+			username="root"
+			password="um0v3-R00t&amp;lm2"
+			command="ls /tmp"/>
+	</target>
+
 </project>
